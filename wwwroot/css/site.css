@@ -1,0 +1,45 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.container-flex{
+  margin-top: 1rem;
+  display: flex;
+  gap: 15px;
+}
+
+.margin{
+  margin: 10px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.inactive{
+  display: none;
+}
+
+.container_center{
+  display: grid;
+  max-width: 1200px;
+  margin: 0, auto;
+  width: 100%;
+  place-content: center;
+}
+
+
+

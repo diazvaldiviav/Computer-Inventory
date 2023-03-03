@@ -1,0 +1,76 @@
+@model ProyectoInventarioASP.Models.MemoriaRam
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+<h1>Insertar</h1>
+
+<h4>MemoriaRam</h4>
+<hr />
+<div class="row">
+    <div class="col-md-5 border border-1">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NumSerieMemoria" class="control-label"></label>
+                <input asp-for="NumSerieMemoria" placeholder="Introduzca el numero de serie"
+                    class="form-control border border-5" />
+                <span asp-validation-for="NumSerieMemoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Marca" class="control-label"></label>
+                <input asp-for="Marca" placeholder="Introduzca la marca" class="form-control border border-5" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacidad" class="control-label"></label>
+                <input asp-for="Capacidad" placeholder="Introduzca la capacidad Ej: 4 Gb"
+                    class="form-control border border-5" />
+                <span asp-validation-for="Capacidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnologia" class="control-label"></label>
+                <input asp-for="Tecnologia" placeholder="Entroduzca la tecnologia Ej: DDR3"
+                    class="form-control border border-5" />
+                <span asp-validation-for="Tecnologia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="invPc" class="control-label"></label>
+                <input asp-for="invPc" placeholder="Introduzca la marca" class="form-control border border-5" />
+                <span asp-validation-for="invPc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MotherBoardId" class="control-label"></label>
+                <input asp-for="MotherBoardId" list="boards" placeholder="Introduzca un No de Serie de board"
+                    class="form-control border border-5" />
+                <datalist id="boards">
+                    @foreach (var item in ViewBag.MotherBoards)
+                    {
+                        <option value="@item.NumSerieBoard">@item.NumSerieBoard</option>
+                    }
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado"></label>
+                @Html.DropDownList(
+                "estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado",
+                new{@class = "form-control"}
+                )
+            </div>
+            <div class="form-group p-2">
+                <input type="submit" value="Crear" class="btn btn-orange" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

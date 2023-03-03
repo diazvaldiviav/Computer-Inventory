@@ -1,0 +1,77 @@
+@model IEnumerable<ProyectoInventarioASP.Models.MemoriaRam>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1>Memorias Ram</h1>
+
+<p>
+    @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+    {
+        <a asp-action="Create" class="btn btn-orange btn-sm">Insertar</a>
+    }
+</p>
+<div class="table-responsive">
+<table class="table table-hover table-border" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumSerieMemoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tecnologia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.invPc)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="CuerpoTablaPc">
+        @foreach (var item in Model)
+        {
+            <tr class="filapc">
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumSerieMemoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tecnologia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.invPc)
+                </td>
+
+                @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+                {
+                    <td><a asp-action="Details" asp-route-id="@item.KayNumSerieId" class="btn btn-orange btn-sm">Detalles</a></td>
+                    <td><a asp-action="Delete" asp-route-id="@item.KayNumSerieId" class="btn btn-danger btn-sm">Eliminar</a></td>
+                }
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

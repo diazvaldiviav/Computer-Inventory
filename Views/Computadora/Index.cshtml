@@ -1,0 +1,84 @@
+@model IEnumerable<ProyectoInventarioASP.Models.Computadora>
+@using Microsoft.AspNetCore.Identity;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+<div class="margin">
+    <h1>Computadoras</h1>
+    @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+    {
+        <div class="container-flex">
+            <p>
+                <a asp-action="Create" class="btn btn-orange btn-sm">Insertar</a>
+            </p>
+            <p>
+                <a asp-action="ImprimirFilter" class="btn btn-orange btn-sm" id="guardar">Imprimir Todos</a>
+            </p>
+        </div>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-hover" id="tabla">
+            <thead>
+                <tr>
+                    <th>Inventario</th>
+                    <th>Departamento</th>
+                    <th>Area</th>
+                    <th>Nombre</th>
+                    <th>SO</th>
+                    <th>Estado</th>
+                    <th>Ip</th>
+                    <th>Sello</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="CuerpoTablaPc">
+                @foreach (var item in Model)
+                {
+                    <tr class="filapc">
+                        <td class="filter" id="inv">
+                            @Html.DisplayFor(modelItem => item.NumInv)
+                        </td>
+                        <td class="filter dep" id="dep">
+                            @Html.DisplayFor(modelItem => item.NombreDepartamento)
+                        </td>
+                        <td class="filter dep" id="area">
+                            @Html.DisplayFor(modelItem => item.NombreArea)
+                        </td>
+                        <td class="filter inv" id="nombre">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td class="filter" id="so">
+                            @Html.DisplayFor(modelItem => item.SO)
+                        </td>
+                        <td class="filter" id="estado">
+                            @Html.DisplayFor(modelItem => item.estado)
+                        </td>
+                        <td class="filter" id="NumIp">
+                            @Html.DisplayFor(modelItem => item.NumIp)
+                        </td>
+                         <td class="filter" id="UserName">
+                            @Html.DisplayFor(modelItem => item.Sello)
+                        </td>
+                        @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+                        {
+                            <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-orange btn-sm">Detalles</a></td>
+                            <td class="w-25"><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"> baja</a></td> 
+                        }
+
+                        @if (User.IsInRole("lectura"))
+                        {
+                            <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-orange btn-sm">Detalles</a></td>
+                        }
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

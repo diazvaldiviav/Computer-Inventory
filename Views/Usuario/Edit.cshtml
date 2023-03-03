@@ -1,0 +1,68 @@
+@model ProyectoInventarioASP.Models.Usuario
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h1>Modificar</h1>
+
+<h4>Trabajador</h4>
+<hr />
+<div class="row">
+    <div class="col-md-5 border border-1">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NombreCompleto" class="control-label"></label>
+                <input asp-for="NombreCompleto" placeholder = "Introduzca el nombre completo Ej: Juan Perez" class="form-control border border-5" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreUsuario" class="control-label"></label>
+                <input asp-for="NombreUsuario" placeholder="Introduzca el nombre de usuario Ej: juan.perez" class="form-control border border-5" />
+                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cargo" class="control-label"></label>
+                <input asp-for="Cargo" placeholder="Introduzca el cargo" class="form-control border border-5" />
+                <span asp-validation-for="Cargo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="NombreArea" class="control-label"></label>
+            <input List="Areas" placeholder="Ingrese un Area" asp-for="NombreArea" class="form-control border border-5"/>
+            <datalist id="Areas">
+                @foreach (var area in ViewBag.Areas)
+                {
+                    <option value="@area">@area</option>
+                }
+            </datalist>
+            <span asp-validation-for="NombreArea" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NombreDepartamento" class="control-label"></label>
+            <input list="departamentos" placeholder="Ingrese un departamento" asp-for="NombreDepartamento"
+                class="form-control border border-5" />
+            <datalist id="departamentos">
+                @foreach (var departamento in ViewBag.Departamentos)
+                {
+                    <option value="@departamento">@departamento</option>
+                }
+            </datalist>
+            <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
+        </div>
+            <div class="form-group p-2">
+                <input type="submit" value="Guardar" class="btn btn-orange" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

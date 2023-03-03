@@ -1,0 +1,35 @@
+@model ProyectoInventarioASP.Models.Scanner
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<   /h1>
+
+<div>
+    <h4>Scanner No: @Html.DisplayFor(model => model.Id)</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col p-2     border">@Html.DisplayNameFor(model => model.NumInv)</div>
+            <div class="col p-2     border">@Html.DisplayFor(model => model.NumInv)</div>
+            <div class="w-100"></div>
+            <div class="col p-2     border">@Html.DisplayNameFor(model => model.Marca)</div>
+            <div class="col p-2     border">@Html.DisplayFor(model => model.Marca)</div>
+            <div class="w-100"></div>
+            <div class="col p-2     border">@Html.DisplayNameFor(model => model.NumSerie)</div>
+            <div class="col p-2     border">@Html.DisplayFor(model => model.NumSerie)</div>
+            <div class="w-100"></div>
+            <div class="col p-2     border">@Html.DisplayNameFor(model => model.estado)</div>
+            <div class="col p-2     border">@Html.DisplayFor(model => model.estado)</div>
+            <div class="w-100"></div>
+            <div class="col p-2     border">@Html.DisplayNameFor(model => model.UserName)</div>
+            <div class="col p-2     border">@Html.DisplayFor(model => model.UserName)</div>
+        </div>
+    </div>
+    <div class="container-flex">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-orange btn-sm">Modificar</a>
+        <td><a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-orange btn-sm">Imprimir</a></td>
+        <a asp-action="Index">Volver</a>
+    </div>

@@ -1,0 +1,26 @@
+﻿@model User
+
+@{
+  ViewData["Title"] = "Home Page";
+  Layout = "signin";
+}
+@* style="property:value;" *@
+<div class="layer"></div>
+<main class="page-center">
+  <article class="sign-up">
+    <div class="d-flex"><img src="~/Assets/iconopag.png" class="icon logo" style="margin-right:10px" aria-hidden="true"><h1 class="sign-up__title" style="margin-left: 25px;">Inventario</h1></div>
+    <p class="sign-up__subtitle">Entre su usuario y su contraseña</p>
+    <form class="sign-up-form form"  method="post">
+      <label class="form-label-wrapper" asp-for="username">
+        <p class="form-label">Usuario</p>
+        <input class="form-input" type="text" placeholder="Entre su nombre de usuario" asp-for="username" required>
+      </label>
+      <label class="form-label-wrapper" asp-for="password">
+        <p class="form-label">Contraseña</p>
+        <input class="form-input" type="password" asp-for="password" placeholder="Entre su contraseña" required>
+      </label>
+      <button class="form-btn primary-default-btn transparent-btn" style="margin-top:25px">Iniciar Sesion</button>
+      <a asp-controller="User" asp-action="Register" style="margin-top:15px">Registrar</a>
+    </form>
+  </article>
+</main>
